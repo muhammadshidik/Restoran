@@ -43,124 +43,44 @@ if ($_SESSION['level'] == ""){
 <html>
 <head>
 	<title>Form Kategori</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
-<style type="text/css">
-* {margin:0; padding:0;}
-	nav{
-	position: fixed;
-	background-color: rgb(10,101,146);
-	 width: 100%;
-	 height: 30px;
-	 font-family: sans-serif;	 
-}
-nav ul ul {
- display: none;
-}
 
-nav ul li:hover > ul{
-display: block;
-width: 150px;
-}
-
-nav ul {
- background: rgb(10,101,146);
- list-style: none;
- position: relative;
- display: inline-table;
- width: 100%;
-
-}
-        
-
-nav ul li{
- float:left;
-}
-
-nav ul li:hover{
- background:#666;
-
-}
-
-nav ul li:hover a{
- color:#fff;
-
-}
-
-nav ul li a{
- display: block;
- padding: 20px;
- color: #fff;
- text-decoration: none;
-
-}
-input[type=submit] {
-      background-color: rgb(10,101,146);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-	 .col-25 {
-      float: left;
-      width: 25%;
-      margin-top: 20px;
-    }
-
-    /*  inputs: 75% width */
-    .col-75 {
-      float: left;
-      width: 75%;
-      margin-top: 20px;
-    }
-    .col-60{
-    	float: left;
-    	width: 70%;
-    	margin-top: 0px;
-    }
-   
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-    table {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color:grey;
-      border: #212121 0,5px solid;
-    
-        
-        }
-       table th {
-      padding: 10px 40px;
-      border-left:0,5px solid black;
-      border-bottom: 0,5px solid #000;
-      background: #bdbdbd ;
-    }
-       table th:first-child{  
-        border-left:none;  
-    }
-       table tr {
-      text-align: center;
-      padding-left: 20px;
-    }
-        td,th{
-            color:black;
-        }
-
-</style>
 <body>
-	<div class="container">
-		<nav>
-		<ul>
-			<li><a href="dashboard.php">Dashboard</a></li>
-      <li><a href="menu.php">Menu</a></li>
-      <li><a href="kategori.php">Kategori</a></li>
-      <li><a href ="laporan.php">Laporan</a></li>
-      <li><a href="user.php">Kelola User</a></li>
-      <li><a href="logout.php" onclick="return confirm('Apa anda yakin ?')">Log Out</a></li>
-		</ul>
-	</nav>
+		 <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Dapur Mama Niar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="menu.php">Menu</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="kategori.php">Kategori</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="laporan.php">Laporan</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="user.php">Kelola User</a>
+        </li>
+       
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success me-5" type="submit">Search</button>
+          <button class="btn btn-dark" type="submit" href="logout.php" onclick="return confirm('Apa anda yakin ?')">Keluar</button>
+      </form>
+    </div>
+  </div>
+</nav>
 	<br><br><br><br><br><br><br>
   <form method="POST">
 		<div class="row">
@@ -178,6 +98,7 @@ input[type=submit] {
       <input type="submit" name="updateuser" value="Update">
     </div></center>
   </form>
+  </body>
     <center><table align="center">
       <br>
       <br>
@@ -203,11 +124,13 @@ input[type=submit] {
         <td><?php echo $r['kd_kategori'];?></td>
         <td><?php echo $r['kategori'];?></td>
         <td><a onclick="return confirm('Yakin Ingin Menghapus?')" href="kategori.php?hapus&id=<?php echo $r['kd_kategori'];?>">HAPUS</a></td>
-          <td><a href="kategori.php?edit&id=<?php echo $r['kd_kategori'];?>">EDIT</a></td>
+          <td><a class="btn btn-warning" href="kategori.php?edit&id=<?php echo $r['kd_kategori'];?>">EDIT</a></td>
       </tr>
       <?php } ?>
     </table></center>
-	</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
 
 </body>
 </html>

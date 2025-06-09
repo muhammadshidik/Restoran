@@ -12,6 +12,7 @@ if ($_SESSION['level'] == ""){
 <html>
 <head>
 	<title>Dashboard</title>
+
 </head>
 <style type="text/css">
 * {margin:0; padding:0;}
@@ -62,6 +63,7 @@ nav ul li a{
 
 }
 </style>
+
 <body>
 	<div class="container">
 		<nav>

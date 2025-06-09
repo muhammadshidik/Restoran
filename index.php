@@ -54,7 +54,7 @@ $conn = mysqli_connect("localhost","root","","db_restoran");
             box-sizing: border-box;
             padding: 70px 60px;
         }    
-        }
+        
         .h1{
             margin: 0;
             padding: 0 0 20px;
