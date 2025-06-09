@@ -48,7 +48,7 @@ if ($_SESSION['level'] == ""){
 </head>
 
 <body>
-		 <nav class="navbar navbar-expand-lg bg-body-tertiary">
+	 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Dapur Mama Niar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,8 +80,7 @@ if ($_SESSION['level'] == ""){
       </form>
     </div>
   </div>
-</nav>
-	<br><br><br><br><br><br><br>
+</nav>	<br><br><br><br><br><br><br>
   <form method="POST">
 		<div class="row">
 			<div class="col-25">

@@ -75,49 +75,81 @@ if(isset($_POST['update'])){
     </div>
   </div>
 </nav>
-  <!-- <nav>
-    <ul>
-      <li><a href="dashboard.php">Dashboard</a></li>
-      <li><a href="menu.php">Menu</a></li>
-      <li><a href="kategori.php">Kategori</a></li>
-      <li><a href ="laporan.php">Laporan</a></li>
-      <li><a href="user.php">Kelola User</a></li>
-      <li><a href="logout.php" onclick="return confirm('Apa anda yakin ?')">Log Out</a></li>
-    </ul>
-  </nav> -->
-  <br>
-  <br><br>
+
   <h1 style="font-family:sans-serif; color:rgba(10,101,146);">Kelola Menu</h1>
-    <br><br>
-    <center><form method="post" enctype="multipart/form-data">
-      <table align="center">
-        <tr>
-          <td>Menu</td>
-          <td><input type="text" name="menu" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;" value="<?php echo @$ambil[1];?>"></td>
-        </tr>
-        <tr>
-          <td>Jenis</td>
-          <td><select name="jenis" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;">
+    <form class="container" method="post" enctype="multipart/form-data">
+      <div>
+        <div class="mb-3 row">
+        <div class="col-sm-2">
+            <label for="">Menu * </label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="menu" type="text"
+                class="form-control"
+                placeholder="Masukkan Menu"
+                value="<?php echo @$ambil[1];?>">
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-3 row">
+        <div class="col-sm-2">
+            <label for="">Jenis * </label>
+        </div>
+        <div class="col-sm-10">
+          <select name="jenis">
               <option>Makanan</option>
               <option>Minuman</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td>Harga</td>
-          <td><input type="text" name="harga" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;" value="<?php echo @$ambil[3];?>"></td>
-        </tr>
-        <tr>
-          <td>Status</td>
-          <td><input type="text" name="status" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;" value="<?php echo @$ambil[4];?>"></td>
-        </tr>
-        <tr>
-          <td>Foto</td>
-          <td><input type="file" name="foto" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;" value="<?php echo @$ambil[5];?>"></td>
-        </tr>
-        <tr>
-          <td>Kategori</td>
-          <td>
-            <select name="kategori" style=" width: 80%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;resize: vertical;">
+          </select>
+        </div>
+        </div>
+      </div>
+      
+      <div>
+              <div class="mb-3 row">
+              <div class="col-sm-2">
+                  <label for="">Harga * </label>
+              </div>
+              <div class="col-sm-10">
+                  <input required name="harga" type="text"
+                      class="form-control"
+                      placeholder="Masukkan Harga"
+                      value="<?php echo @$ambil[3];?>">
+              </div>
+              </div>
+      </div>
+
+       <div>
+        <div class="mb-3 row">
+        <div class="col-sm-2">
+            <label for="">Status * </label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="status" type="text"
+                class="form-control"
+                placeholder=""
+                value="<?php echo @$ambil[4];?>">
+        </div>
+        </div>
+      </div>
+
+         <div class="mb-3">
+            <div class="col-sm-2">
+              <label class="form-label">Photo</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="file" name="foto" class="form-control" value="<?php echo @$ambil[5];?>" >
+            </div>
+        </div>
+
+        <div>
+        <div class="mb-3 row">
+        <div class="col-sm-2">
+            <label for="">Kategori * </label>
+        </div>
+        <div class="col-sm-10">
+          <select name="kategori">
             <?php 
             $i = 0;
             $a = "SELECT * FROM tb_kategori";
@@ -128,12 +160,14 @@ if(isset($_POST['update'])){
             <option value="<?= $row[0];?>"><?= $row[1];?></option>
           <?php } ?>
           </select>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><br><input type="submit" name="simpan" value="Simpan" class="button" style="margin-right: 10px"><input type="submit" name="update" value="Update" class="button"></td>
-        </tr>
+        </div>
+        </div>
+      </div>
+    <td>
+                        <a class="btn btn-outline-success btn-sm" type="submit" value="simpan" name="simpan" >Simpan</a>
+                        <a onclick="return confirm('Are you sure??')"
+                            href="" class="btn btn-outline-danger btn-sm" type="submit" name="update" value="Update">Delete</a>
+                    </td>
       </table><br>
       <div align="center">
       <td><input type="text" name="tcari" style="margin-left: 40px;margin-right: 10px; margin-top: 30px; width: 400px" placeholder="Cari" value="<?php echo @$_POST['tcari']; ?>" class="cari" ><input type="submit" name="cari" class="button" value="Search"></td>
@@ -173,7 +207,7 @@ if(isset($_POST['update'])){
         </tr>
       <?php } ?>
       </table>
-    </form></center>
+    </form></cente>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
 </body>
