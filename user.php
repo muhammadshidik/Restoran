@@ -102,7 +102,7 @@ if (isset($_GET['hapus'])) {
 
   <!-- TABEL KELOLA USER -->
   <div class="container mt-5">
-    <div class="col-12">
+    <div class="col-10">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><?php echo isset($id_user) ? 'Edit'  : 'Add' ?> Kelola User</h5>
@@ -158,10 +158,11 @@ if (isset($_GET['hapus'])) {
         </div>
       </div>
     </div>
+    <br>
 
     <!-- tampilkan tabel user -->
     <div class="container">
-      <div class="col-12">
+      <div class="col-10">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Data User</h5>

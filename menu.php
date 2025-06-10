@@ -78,141 +78,146 @@ if (isset($_POST['update'])) {
     </div>
   </nav>
 
-  <h1 style="font-family:sans-serif; color:rgba(10,101,146);">Kelola Menu</h1>
-  <form class="container" method="post" enctype="multipart/form-data">
-    <div>
-      <div class="mb-3 row">
+  <!-- TABEL KELOLA MENU -->
+
+  <div class="container">
+    <h1 style="font-family:sans-serif; color:rgba(10,101,146);">Kelola Menu</h1>
+    <form class="container" method="post" enctype="multipart/form-data">
+      <div>
+        <div class="mb-3 row">
+          <div class="col-sm-2">
+            <label for="">Menu * </label>
+          </div>
+          <div class="col-sm-10">
+            <input required name="menu" type="text"
+              class="form-control"
+              placeholder="Masukkan Menu"
+              value="<?php echo @$ambil[1]; ?>">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-3 row">
+          <div class="col-sm-2">
+            <label for="">Jenis * </label>
+          </div>
+          <div class="col-sm-10">
+            <select class="form-select" name="jenis">
+              <option>Makanan</option>
+              <option>Minuman</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-3 row">
+          <div class="col-sm-2">
+            <label for="">Harga * </label>
+          </div>
+          <div class="col-sm-10">
+            <input required name="harga" type="text"
+              class="form-control"
+              placeholder="Masukkan Harga"
+              value="<?php echo @$ambil[3]; ?>">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-3 row">
+          <div class="col-sm-2">
+            <label for="">Status * </label>
+          </div>
+          <div class="col-sm-10">
+            <input required name="status" type="text"
+              class="form-control"
+              placeholder=""
+              value="<?php echo @$ambil[4]; ?>">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
         <div class="col-sm-2">
-          <label for="">Menu * </label>
+          <label class="form-label">Photo</label>
         </div>
         <div class="col-sm-10">
-          <input required name="menu" type="text"
-            class="form-control"
-            placeholder="Masukkan Menu"
-            value="<?php echo @$ambil[1]; ?>">
+          <input type="file" name="foto" class="form-control" value="<?php echo @$ambil[5]; ?>">
         </div>
       </div>
-    </div>
 
-    <div>
-      <div class="mb-3 row">
-        <div class="col-sm-2">
-          <label for="">Jenis * </label>
-        </div>
-        <div class="col-sm-10">
-          <select name="jenis">
-            <option>Makanan</option>
-            <option>Minuman</option>
-          </select>
+      <div>
+        <div class="mb-3 row">
+          <div class="col-sm-2">
+            <label for="">Kategori * </label>
+          </div>
+          <div class="col-sm-10">
+            <select class="form-select" name="kategori">
+              <?php
+              $i = 0;
+              $a = "SELECT * FROM tb_kategori";
+              $b = mysqli_query($conn, $a);
+              while ($row = mysqli_fetch_array($b)) {
+                $i++;
+              ?>
+                <option value="<?= $row[0]; ?>"><?= $row[1]; ?></option>
+              <?php } ?>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
+      <td>
+        <input class="btn btn-outline-success btn-sm" type="submit" value="simpan" name="simpan"></>
+        <input onclick="return confirm('Are you sure??')"
+          href="?menu=menu&hapus&id=<?php echo $row[0]; ?>" class="btn btn-outline-danger btn-sm" type="submit" name="hapus"></a>
+      </td>
+      </table><br>
 
-    <div>
-      <div class="mb-3 row">
-        <div class="col-sm-2">
-          <label for="">Harga * </label>
-        </div>
-        <div class="col-sm-10">
-          <input required name="harga" type="text"
-            class="form-control"
-            placeholder="Masukkan Harga"
-            value="<?php echo @$ambil[3]; ?>">
-        </div>
+      <div align="center">
+        <td><input type="text" name="tcari" style="margin-left: 40px;margin-right: 10px; margin-top: 30px; width: 400px" placeholder="Cari" value="<?php echo @$_POST['tcari']; ?>" class="cari"><input type="submit" name="cari" class="button" value="Search"></td>
       </div>
-    </div>
-
-    <div>
-      <div class="mb-3 row">
-        <div class="col-sm-2">
-          <label for="">Status * </label>
-        </div>
-        <div class="col-sm-10">
-          <input required name="status" type="text"
-            class="form-control"
-            placeholder=""
-            value="<?php echo @$ambil[4]; ?>">
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <div class="col-sm-2">
-        <label class="form-label">Photo</label>
-      </div>
-      <div class="col-sm-10">
-        <input type="file" name="foto" class="form-control" value="<?php echo @$ambil[5]; ?>">
-      </div>
-    </div>
-
-    <div>
-      <div class="mb-3 row">
-        <div class="col-sm-2">
-          <label for="">Kategori * </label>
-        </div>
-        <div class="col-sm-10">
-          <select name="kategori">
+    </form>
+    <form method="post">
+      <div class="table-responsive">
+        <table class="table table-bordered datatable mt-3 ">
+          <thead>
+            <th>Kode Menu</th>
+            <th>Menu</th>
+            <th>Jenis</th>
+            <th>Harga</th>
+            <th>Status</th>
+            <th>Foto</th>
+            <th>Kode Kategori</th>
+            <th>Aksi</th>
+            </tr>
             <?php
-            $i = 0;
-            $a = "SELECT * FROM tb_kategori";
-            $b = mysqli_query($conn, $a);
-            while ($row = mysqli_fetch_array($b)) {
-              $i++;
+            $sql = "SELECT * FROM tb_menu";
+            if (isset($_POST['cari'])) {
+              $sql = "SELECT * FROM tb_menu WHERE kd_menu LIKE '$_POST[tcari]%' OR menu LIKE '$_POST[tcari]%' OR jenis LIKE '$_POST[tcari]%' OR harga LIKE '$_POST[tcari]%' OR status LIKE '$_POST[tcari]%'";
+            } else {
+              $sql = "SELECT * FROM tb_menu";
+            }
+            $qry = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_array($qry)) {
             ?>
-              <option value="<?= $row[0]; ?>"><?= $row[1]; ?></option>
+              <tr>
+                <td><?php echo $row[0]; ?></td>
+                <td><?php echo $row[1]; ?></td>
+                <td><?php echo $row[2]; ?></td>
+                <td>Rp.<?= number_format($row[3], 2, ',', '.'); ?></td>
+                <td><?php echo $row[4]; ?></td>
+                <td><img src="image/<?php echo $row[5]; ?>" style="width: 90px; height: 50px;"></td>
+                <td><?php echo $row[6]; ?></td>
+                <td><a href="?menu=menu&edit&id=<?php echo $row[0]; ?>">Edit</a> | <a href="?menu=menu&hapus&id=<?php echo $row[0]; ?>">Hapus</a></td>
+              </tr>
             <?php } ?>
-          </select>
-        </div>
-      </div>
-    </div>
-    <td>
-      <input class="btn btn-outline-success btn-sm" type="submit" value="simpan" name="simpan"></>
-      <input onclick="return confirm('Are you sure??')"
-        href="?menu=menu&hapus&id=<?php echo $row[0]; ?>" class="btn btn-outline-danger btn-sm" type="submit" name="hapus"></a>
-    </td>
-    </table><br>
-    <div align="center">
-      <td><input type="text" name="tcari" style="margin-left: 40px;margin-right: 10px; margin-top: 30px; width: 400px" placeholder="Cari" value="<?php echo @$_POST['tcari']; ?>" class="cari"><input type="submit" name="cari" class="button" value="Search"></td>
-    </div>
-  </form>
-  <form method="post">
-    <table cellpadding="10" border="1" style="margin-top: 30px;border-collapse: collapse;" align="center">
-      <tr>
-        <th>Kode Menu</th>
-        <th>Menu</th>
-        <th>Jenis</th>
-        <th>Harga</th>
-        <th>Status</th>
-        <th>Foto</th>
-        <th>Kode Kategori</th>
-        <th>Aksi</th>
-      </tr>
-      <?php
-      $sql = "SELECT * FROM tb_menu";
-      if (isset($_POST['cari'])) {
-        $sql = "SELECT * FROM tb_menu WHERE kd_menu LIKE '$_POST[tcari]%' OR menu LIKE '$_POST[tcari]%' OR jenis LIKE '$_POST[tcari]%' OR harga LIKE '$_POST[tcari]%' OR status LIKE '$_POST[tcari]%'";
-      } else {
-        $sql = "SELECT * FROM tb_menu";
-      }
-      $qry = mysqli_query($conn, $sql);
-      while ($row = mysqli_fetch_array($qry)) {
-      ?>
-        <tr>
-          <td><?php echo $row[0]; ?></td>
-          <td><?php echo $row[1]; ?></td>
-          <td><?php echo $row[2]; ?></td>
-          <td>Rp.<?= number_format($row[3], 2, ',', '.'); ?></td>
-          <td><?php echo $row[4]; ?></td>
-          <td><img src="image/<?php echo $row[5]; ?>" style="width: 90px; height: 50px;"></td>
-          <td><?php echo $row[6]; ?></td>
-          <td><a href="?menu=menu&edit&id=<?php echo $row[0]; ?>">Edit</a> | <a href="?menu=menu&hapus&id=<?php echo $row[0]; ?>">Hapus</a></td>
-        </tr>
-      <?php } ?>
-    </table>
-  </form>
-  </cente>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
+            </>
+    </form>
+    </cente>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
 </body>
 
 </html>
